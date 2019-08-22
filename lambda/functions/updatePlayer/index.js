@@ -16,8 +16,7 @@ exports.handler = (event, context, callback) => {
         return Promise.resolve(processResponse(IS_CORS, 'invalid id specified', 400));
     }
 
-    //const player = JSON.parse(event.body);
-    const player = event.body;
+    const player = JSON.parse(event.body);
     const playerKeys = Object.keys(player);
     if (!player || playerKeys.length < 1) {
         return Promise.resolve(processResponse(IS_CORS, 'no args provided', 400));

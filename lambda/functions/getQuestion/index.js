@@ -8,21 +8,26 @@ exports.handler = (event) => {
         return Promise.resolve(processResponse(IS_CORS));
     }
     
-    const questionId = parseInt(event.pathParameters.id);
-    if (!questionId) {
-        return Promise.resolve(processResponse(IS_CORS, 'invalid id specified', 400));
+    const category = event.pathParameters.category;
+    const difficulty = parseInt(event.pathParameters.difficulty);
+
+    if (!category || !difficulty) {
+        return Promise.resolve(processResponse(IS_CORS, 'invalid key specified', 400));
     }
     
     let params = {
         TableName: TABLE_NAME,
-        KeyConditionExpression: "#id = :id",
-            ExpressionAttributeNames:{
-                "#id": "id"
+        KeyConditionExpression:"#ctgy = :categoryValue and #dfty = :difficultyValue",
+        ExpressionAttributeNames: {
+            "#ctgy": "category",
+            "#dfty": "difficulty"
             },
-            ExpressionAttributeValues: {
-                ":id":questionId
+        ExpressionAttributeValues: {
+            ":categoryValue": category,
+            ":difficultyValue": difficulty
             }
-    }
+        };
+
     return dynamoDb.query(params)
     .promise()
     .then(response => (processResponse(IS_CORS, response.Items)))
