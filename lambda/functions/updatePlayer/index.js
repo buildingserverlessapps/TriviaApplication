@@ -25,7 +25,10 @@ exports.handler = (event, context, callback) => {
     const key = {};
     key[PRIMARY_KEY] = playerId;
     
-    const firstProperty = playerKeys.splice(0,1);
+    var firstProperty = playerKeys.splice(0,1);
+    if (firstProperty == 'id') {
+        firstProperty = playerKeys.splice(0,1);
+    }
     let params = {
         TableName: TABLE_NAME,
         Key: key,
@@ -36,6 +39,9 @@ exports.handler = (event, context, callback) => {
     params.ExpressionAttributeValues[`:${firstProperty}`] = player[firstProperty];
 
     playerKeys.forEach(property => {
+        if (property == 'id') {
+            return;
+        }
         params.UpdateExpression += `, ${property} = :${property}`;
         params.ExpressionAttributeValues[`:${property}`] = player[property];
     });
