@@ -380,7 +380,7 @@ __webpack_require__.r(__webpack_exports__);
 let PlayerService = class PlayerService {
     constructor(http) {
         this.http = http;
-        //TODO2: REPLACE THE URL BELOW WITH THE ONE FOR YOUR PLAYERS API, FROM SECTION 3, ITEM I
+        //TODO2: REPLACE THE URL BELOW WITH THE ONE FOR YOUR PLAYERS API, FROM PART II, SECTION e, ITEM i
         this.playersUrl = 'api/players';
         this.playersChange = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.players = [];
@@ -696,7 +696,7 @@ __webpack_require__.r(__webpack_exports__);
 let QuestionService = class QuestionService {
     constructor(http) {
         this.http = http;
-        //TODO1: REPLACE THE URL BELOW WITH THE ONE FOR YOUR QUESTIONS API, FROM SECTION 3, ITEM III
+        //TODO1: REPLACE THE URL BELOW WITH THE ONE FOR YOUR QUESTIONS API, FROM PART II, SECTION e, ITEM iii
         this.questionsUrl = 'api';
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' })
