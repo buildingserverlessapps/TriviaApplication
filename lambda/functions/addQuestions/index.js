@@ -44,19 +44,16 @@ function batchWriteSessionsToTable(sessions, id) {
         console.log(err); 
       } 
       else  {
-		 //success
-		console.log("Successful batchWrite call for id: " + id);
+        console.log("Successful batchWrite call for id: " + id);
       }
     });
 }
 
 function chunkArray(myArray, chunk_size){
     var results = [];
-    
     while (myArray.length) {
         results.push(myArray.splice(0, chunk_size));
     }
-    
     return results;
 }
 
